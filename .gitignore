@@ -124,4 +124,3 @@ dist
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
 .DS_Store
 google.json
-backend/.env
