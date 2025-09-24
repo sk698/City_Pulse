@@ -5,11 +5,12 @@ import {
     searchAssignments
 } from "../controllers/assignment.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { verifyAdmin } from "../middlewares/verifyAdmin.middleware.js";
 
 const router = Router();
 
 // Assign issue to worker (admin only)
-router.post("/", verifyJWT, assignIssue);
+router.post("/", verifyJWT, verifyAdmin, assignIssue);
 
 // Worker sees their own assignments
 router.get("/my", verifyJWT, getAssignmentsByUser);

@@ -7,7 +7,7 @@ import {
 } from "../controllers/issue.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
-
+import { verifyAdmin } from "../middlewares/verifyAdmin.middleware.js";
 const router = Router();
 
 // Citizen reports an issue
@@ -20,6 +20,6 @@ router.get("/", verifyJWT, getAllIssues);
 router.get("/:id", verifyJWT, getIssueById);
 
 // Update issue status (admin/worker)
-router.patch("/:id/status", verifyJWT, updateIssueStatus);
+router.patch("/account/:id", verifyJWT, verifyAdmin, updateIssueStatus);
 
 export default router;

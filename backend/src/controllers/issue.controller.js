@@ -9,6 +9,10 @@ import {
   notifyReporterOnStatusUpdate,
   notifyUsersOnResolution,
 } from "./notification.controller.js";
+import {
+  verifyIssueAI,
+  getVerificationResult
+} from "./ai.controller.js";
 
 // Citizen creates issue
 const createIssue = asyncHandler(async (req, res) => {
@@ -51,7 +55,10 @@ const createIssue = asyncHandler(async (req, res) => {
 
   // Notify the reporter that the issue has been created
   await notifyReporter(issue);
-
+  // Trigger AI verification if media is present
+  if (issue.media.length > 0) {
+     verifyIssueAI(issue._id);
+  }
   // Send a single, final success response
   return res
     .status(201)

@@ -15,7 +15,8 @@ import { Analytics } from "./pages/Analytics";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { IssueDetails } from "./pages/IssueDetails";
-import { Leaderboard } from "./pages/leaderboard"; // Import the new page
+import { Leaderboard } from "./pages/Leaderboard"; // Import the new page
+import { ManageAccount } from "./pages/Manage";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +101,13 @@ const App = () => {
             }>
               <Route index element={<Analytics />} />
             </Route>
+            <Route path="/account" element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<ManageAccount />} />
+            </Route>
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
@@ -111,3 +119,19 @@ const App = () => {
 };
 
 export default App;
+
+
+
+// ... (imports)
+ // Import the new page
+
+// ... (inside App component)
+<BrowserRouter>
+  <Routes>
+    {/* ... (other routes) ... */}
+    
+   
+    
+    {/* ... (catch-all route) ... */}
+  </Routes>
+</BrowserRouter>

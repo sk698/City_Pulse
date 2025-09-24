@@ -38,6 +38,8 @@ router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 //  Profile & Account
 router.route("/current-user").get(verifyJWT, getCurrentUser);
 router.route("/update-account").patch(verifyJWT, updateAccountDetails);
+router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
+router.route("/cover-image").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage);
 
 //  Civic-Specific
 router.route("/issue").get(verifyJWT, getMyReportedIssues);   

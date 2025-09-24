@@ -19,7 +19,9 @@ const issueSchema = new Schema(
     },
     address: { type: String },
     priority: { type: Number, default: 0 }, 
-    media: [{ type: Schema.Types.ObjectId, ref: "IssueMedia" }]
+    media: [{ type: Schema.Types.ObjectId, ref: "IssueMedia" }],
+    aiVerified: { type: Boolean, default: false },
+    aitags: [{ type: String }],
   },
   { timestamps: true }
 );
