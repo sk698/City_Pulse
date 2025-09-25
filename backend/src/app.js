@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 const app = express()
 
 app.use(cors({
-    origin: "*", // your Vercel frontend
+    origin: "https://city-pulse-psi.vercel.app", // your Vercel frontend
     credentials: true, // allow cookies/auth
     methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow all necessary HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"] // allow these headers
