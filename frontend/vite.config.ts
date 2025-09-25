@@ -8,8 +8,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     proxy: {
       '/api/v1': 'https://city-pulse-jpsj.onrender.com',
-    },
-    host: "https://city-pulse-jpsj.onrender.com",
+    }
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
