@@ -5,9 +5,12 @@ import cookieParser from "cookie-parser"
 const app = express()
 
 app.use(cors({
-    origin: true,
-    credentials: true
-}))
+    origin: "https://city-pulse-indol.vercel.app/login", // your Vercel frontend
+    credentials: true, // allow cookies/auth
+    methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow all necessary HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"] // allow these headers
+}));
+
 
 app.use(express.json({limit: "16kb"}))
 // app.use(express.urlencoded({extended: true, limit: "16kb"}))
