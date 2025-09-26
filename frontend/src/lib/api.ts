@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://city-pulse-jpsj.onrender.com/api/v1';
+const API_BASE_URL = 'http://localhost:8000/api/v1';
 
 // Create axios instance with default config
 export const api = axios.create({
