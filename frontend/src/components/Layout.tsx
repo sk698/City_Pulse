@@ -101,10 +101,12 @@ export const Layout = () => {
                       </div>
                     </div>
                     <Separator />
-                    <Button variant="ghost" className="w-full justify-start">
-                      <UserIcon className="mr-2 h-4 w-4" />
-                      Manage Account
-                    </Button>
+                    <Link to="/account">
+                      <Button variant="ghost" className="w-full justify-start">
+                        <UserIcon className="mr-2 h-4 w-4" />
+                        Manage Account
+                      </Button>
+                    </Link>
                     <Button variant="ghost" className="w-full justify-start text-red-500 hover:text-red-600" onClick={handleLogout}>
                       <LogOut className="mr-2 h-4 w-4" />
                       Log Out
