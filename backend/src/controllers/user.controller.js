@@ -43,22 +43,18 @@ const registerUser = asyncHandler( async (req, res) => {
         if (existedUser.username === username) {
         throw new ApiError(409, "username already exists");
         }
-        if (existedUser.fullName === fullName) {
+        if (existedUser.email === email) {
         throw new ApiError(409, "email already exists");
         }
     }
 
     const avatarLocalPath = req.files?.avatar?.[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
     const avatar = await uploadOnCloudinary(avatarLocalPath)
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath)
-    console.log(avatarLocalPath, coverImageLocalPath);
     
    
     const user = await User.create({
         fullName,
         avatar: avatar?.url || "",
-        coverImage: coverImage?.url || "",
         email, 
         password,
         username: username.toLowerCase()
@@ -290,36 +286,6 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
     );
 });
 
-const updateUserCoverImage = asyncHandler(async(req, res) => {
-    const coverImageLocalPath = req.file?.path;
-
-    if (!coverImageLocalPath) {
-        throw new ApiError(400, "Cover image file is missing");
-    }
-
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-
-    if (!coverImage.url) {
-        throw new ApiError(400, "Error while uploading on avatar");
-    }
-
-    const user = await User.findByIdAndUpdate(
-        req.user?._id,
-        {
-            $set:{
-                coverImage: coverImage.url
-            }
-        },
-        {new: true}
-    ).select("-password");
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(200, user, "Cover image updated successfully")
-    );
-});
-
 const getMyReportedIssues = asyncHandler(async (req, res) => {
   const issues = await Issue.find({ userId: req.user._id }).populate("media");
   return res.status(200).json(new ApiResponse(200, issues, "Reported issues fetched"));
@@ -343,7 +309,6 @@ export {
     getCurrentUser,
     updateAccountDetails,
     updateUserAvatar,
-    updateUserCoverImage,
     getMyReportedIssues,
     getMyAssignments
 }

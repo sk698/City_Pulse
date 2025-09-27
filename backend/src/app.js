@@ -5,15 +5,13 @@ import cookieParser from "cookie-parser"
 const app = express()
 
 app.use(cors({
-    origin: ["https://city-pulse-psi.vercel.app","http://localhost:5173"], // your Vercel frontend
-    credentials: true, // allow cookies/auth
-    methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow all necessary HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"] // allow these headers
+    origin: ["https://city-pulse-indol.vercel.app","http://localhost:5173"], // your Vercel frontend
+    credentials: true,
 }));
 
 
 app.use(express.json({limit: "16kb"}))
-// app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
@@ -36,6 +34,6 @@ app.use("/api/v1/ai", aiRoutes);
 app.use("/api/v1/campaign", campaignRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes); 
 
-// http://localhost:8000/api/v1/
+// http://localhost:8000/api/v1
 
 export { app }

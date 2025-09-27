@@ -8,7 +8,6 @@ import {
     getCurrentUser,
     updateAccountDetails,
     updateUserAvatar,
-    updateUserCoverImage,
     getMyReportedIssues,
     getMyAssignments
 } from "../controllers/user.controller.js";
@@ -19,13 +18,14 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 //  Registration with avatar & cover image
-router.route("/register").post(
-    upload.fields([
-        { name: "avatar", maxCount: 1 },
-        { name: "coverImage", maxCount: 1 }
+router.route("/register").post(upload.fields([
+        {
+            name: "avatar",
+            maxCount: 1
+        },
     ]),
     registerUser
-);
+    );
 
 //  Login & Refresh
 router.route("/login").post(loginUser);
@@ -39,7 +39,6 @@ router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 router.route("/current-user").get(verifyJWT, getCurrentUser);
 router.route("/update-account").patch(verifyJWT, updateAccountDetails);
 router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
-router.route("/cover-image").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage);
 
 //  Civic-Specific
 router.route("/issue").get(verifyJWT, getMyReportedIssues);   
