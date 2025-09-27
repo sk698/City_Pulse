@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 const app = express()
 
 app.use(cors({
-    origin: ["https://city-pulse-indol.vercel.app","http://localhost:5173"], // your Vercel frontend
+    origin: ["https://city-pulse-psi.vercel.app","http://localhost:5173"],
     credentials: true,
 }));
 
